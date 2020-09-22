@@ -1,15 +1,25 @@
 package Principal;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
+import Entidades.Encadeada;
+
 public class Main {
+	
+	public static List<Integer> arrayList = new ArrayList<Integer>();
 
 	public static void main(String[] args) throws IOException {
 		
 		int opcao = 0;
 		int cont = 0;
+		int auxiliar = 0;
 		
+		Random gerador = new Random();
+
 		Scanner entrada = new Scanner(System.in);
 		
 		do {
@@ -31,15 +41,41 @@ public class Main {
 			
 			switch (opcao) {
 			
-				case 1:
+				case 1: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO VETOR ~~~~~~~~~~~~~~~~~~~~~~~~
+					
+					
+					int[] vetor = new int[250000];
+					
+					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+						vetor[auxiliar]=gerador.nextInt((1000000)+1);
+						System.out.println("Valor: "+ vetor[auxiliar]);
+					}
+					System.out.println("Lista preenchida Pressione Enter!");
+					System.in.read();
+					
 					break;
 			
-				case 2:
+				case 2: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO LISTA ENCADEADA ~~~~~~~~~~~~~~~~~~~~~~~~
+					
+					Encadeada.listarElementos(Encadeada.inserirElementoFim());
+					System.out.println("Lista Encadeada preenchida Pressione Enter!");
+					System.in.read();
+					
+					
+					 
+			          
 					
 					break;
 											
-				case 3:
-				
+				case 3: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO ARRAYLIST ~~~~~~~~~~~~~~~~~~~~~~~~
+					
+					for(auxiliar = 0; auxiliar<=250000; auxiliar++) {
+						Main.arrayList.add(auxiliar,gerador.nextInt(1000000));
+						System.out.println("Valor : " + Main.arrayList.get(auxiliar));	
+					}
+					System.out.println("ArrayList preenchida Pressione Enter!");
+					System.in.read();
+					
 					break;
 
 				case 4:
