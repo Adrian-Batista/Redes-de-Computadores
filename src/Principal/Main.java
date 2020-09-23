@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import Entidades.Conexao;
 import Entidades.Encadeada;
+import Entidades.Servidor;
 
 public class Main {
 	
@@ -21,6 +23,8 @@ public class Main {
 		Random gerador = new Random();
 
 		Scanner entrada = new Scanner(System.in);
+		
+		
 		
 		do {
 			if(cont>0)
@@ -61,10 +65,6 @@ public class Main {
 					System.out.println("Lista Encadeada preenchida Pressione Enter!");
 					System.in.read();
 					
-					
-					 
-			          
-					
 					break;
 											
 				case 3: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO ARRAYLIST ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -80,6 +80,10 @@ public class Main {
 
 				case 4:
 				
+					break;
+					
+				case 5:
+					Conexao.EnviandoDados();
 					break;
 					
 				case 0:
