@@ -9,27 +9,100 @@ import java.net.Socket;
 
 public class Servidor {
 
-	private static Socket s; // Create Socket
-	private static ServerSocket ss; // Create a Server Socket
+	private static Socket s;
+	private static ServerSocket ss;
 
 	public static void main(String[] args) throws IOException {
-		ss = new ServerSocket(2800); // Start a new server socket on port 2800
+		ss = new ServerSocket(2800);
 		while (true) {
-			s = ss.accept();// Accept when a request arrives
-			// String Buffer Reader
-			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			String requestString = inFromClient.readLine(); // Convert it to String
-			/* Some processing */
-			System.out.println("Client sent : " + requestString); // Print Operation
-			// Generate Stream Reply
-			DataOutputStream outToClient = new DataOutputStream(s.getOutputStream());
-			outToClient.writeBytes("Reply"); // Some Reply Data
-			outToClient.writeBytes("\n"); // Line end
-			outToClient.flush(); // Send it to client
-			outToClient.close();
-
+			BufferedReader entrada;
+			DataOutputStream saida;
+			String dadoCliente = null;
+			
+			s = ss.accept();
+			
+			entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));  // lendo a escolha do cliente de qual tipo de armazenamento..
+			dadoCliente = entrada.readLine();										 // ...será feito, vetor, encadeada ou Array.
+			
+			saida = new DataOutputStream(s.getOutputStream());
+			saida.writeBytes("Os dados serão armazenados em " + dadoCliente);
+			saida.flush();
+			entrada.close();
+			saida.close();
+			
+			if(dadoCliente.contains("vetor")) {
+				OrdenaVetor();
+			}
+			if(dadoCliente=="encadeada") {
+				
+			}
+			if(dadoCliente=="array") {
+				
+			}
+			
+			
+			
 		}
+	
+	}
+	
+	public static void OrdenaVetor() throws IOException { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO VETOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		int[] vetor = new int[250000];
+		BufferedReader entrada;
+		DataOutputStream saida;
+		String dadoCliente = null;
+		
+		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ carregando o vetor com os dados recebidos da conexão. 
+			s = ss.accept();
+			entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			dadoCliente = entrada.readLine();
+			vetor[auxiliar] = Integer.parseInt(dadoCliente);
+			System.out.println("\nValor: "+ vetor[auxiliar]);
+			saida = new DataOutputStream(s.getOutputStream());
+			saida.writeBytes("recebido!");
+			saida.flush();
+			entrada.close();
+			saida.close();
+		}
+		
+		 long tempoInicial = System.currentTimeMillis();
 
+	     insertionSortVetor(vetor);
+
+	     long tempoFinal = System.currentTimeMillis();
+
+	     System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+	     
+	     System.in.read();
+	     
+	     for(int i = 0; i<vetor.length; i++) {
+	    	 System.out.println("Valor: "+ vetor[i]);
+	     }
+		
+	}
+	
+	public static void OrdenaEncadeada() { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO ENCADEADA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	}
+
+	public static void OrdenaArray() { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO ARRAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	}
+	
+	public static void insertionSortVetor(int[] vetor) {
+	    int j;
+	    int key;
+	    int i;
+
+	    for (j = 1; j < vetor.length; j++)
+	    {
+	      key = vetor[j];
+	      for (i = j - 1; (i >= 0) && (vetor[i] > key); i--)
+	      {
+	         vetor[i + 1] = vetor[i];
+	       }
+	        vetor[i + 1] = key;
+	    }
 	}
 
 }

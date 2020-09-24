@@ -9,24 +9,27 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Conexao {
-	private static Socket socket; //Criando o Socket
+	private static Socket socket;
 
-	public static void EnviandoDados() throws UnknownHostException, IOException {
+	public static void EnviandoDados(String auxiliar) throws UnknownHostException, IOException {
 		
-		socket = new Socket("localhost", 2800); //Create a Client Socket for "localhost" address and port
+		socket = new Socket("localhost", 2800);
+		BufferedWriter wr;
+		BufferedReader rd;
+	
+		wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); 
+		wr.write(auxiliar);
+		wr.write("\n");
+		wr.flush();
 
-		//Create a Request Buffer
-		BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); 
-		wr.write("Request"); //Some Request data
-		wr.write("\n"); //Line end
-		wr.flush(); //Send it
-
-		//Create a Reply Buffer
-		BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
-		String requestString = rd.readLine(); //Read Reply Information
-		System.out.println("Server replied: " + requestString); //Print reply
+		rd = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
+		String requestString = rd.readLine();
+		System.out.println("Dado: " + requestString);
+	
 		rd.close();
 		wr.close();
+		
+		
 
 	}
 

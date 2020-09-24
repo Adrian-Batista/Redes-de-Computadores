@@ -1,5 +1,8 @@
 package Entidades;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Encadeada {
@@ -19,7 +22,7 @@ public class Encadeada {
 		}
 	}
 
-	Elemento inicio;
+	static Elemento inicio;
 	Elemento fim;
 	int tamanho;
 
@@ -62,8 +65,24 @@ public class Encadeada {
 		return inicio;
 		
 	}
+	
+	public static void EnviaEncadeada() throws UnknownHostException, IOException {
+		Elemento aux = inicio;
+		String auxiliar = null;
+		double processamento = 0;
+		while(aux!=null){
+			auxiliar = String.valueOf(aux);
+			Conexao.EnviandoDados(auxiliar);
+			processamento = processamento + 0.0004;
+			DecimalFormat formato = new DecimalFormat("#.00");
+			System.out.println("\nEnviados: " + formato.format(processamento) + "%");
+			aux = aux.prox;
+		}
+		
+	}
+	
 
-	public Elemento getInicio() {
+	public static Elemento getInicio() {
 		return inicio;
 	}
 

@@ -1,6 +1,7 @@
 package Principal;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,7 +9,6 @@ import java.util.Scanner;
 
 import Entidades.Conexao;
 import Entidades.Encadeada;
-import Entidades.Servidor;
 
 public class Main {
 	
@@ -19,6 +19,7 @@ public class Main {
 		int opcao = 0;
 		int cont = 0;
 		int auxiliar = 0;
+		String valor = null;
 		
 		Random gerador = new Random();
 
@@ -49,12 +50,25 @@ public class Main {
 					
 					
 					int[] vetor = new int[250000];
+					double processamento = 0;
 					
 					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
 						vetor[auxiliar]=gerador.nextInt((1000000)+1);
 						System.out.println("Valor: "+ vetor[auxiliar]);
 					}
 					System.out.println("Lista preenchida Pressione Enter!");
+					System.in.read();
+					
+					Conexao.EnviandoDados("vetor");
+					
+					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+						valor = String.valueOf(vetor[auxiliar]);
+						Conexao.EnviandoDados(valor);
+						processamento = processamento + 0.0004;
+						DecimalFormat formato = new DecimalFormat("#.00");
+						System.out.println("\nEnviados: " + formato.format(processamento) + "%");
+					}
+					System.out.println("Todos os dados foram enviados ao Servidor!");
 					System.in.read();
 					
 					break;
@@ -64,6 +78,14 @@ public class Main {
 					Encadeada.listarElementos(Encadeada.inserirElementoFim());
 					System.out.println("Lista Encadeada preenchida Pressione Enter!");
 					System.in.read();
+					
+					Encadeada.EnviaEncadeada();
+					System.out.println("Dados enviados com sucesso!");
+					System.in.read();
+					
+					
+					
+					
 					
 					break;
 											
@@ -83,7 +105,10 @@ public class Main {
 					break;
 					
 				case 5:
-					Conexao.EnviandoDados();
+					
+					int aux = 10;
+					valor = String.valueOf(aux);
+					Conexao.EnviandoDados(valor);
 					break;
 					
 				case 0:
