@@ -7,33 +7,15 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Principal.Main;
-
 public class Vetor {
 
 	private static Socket s;
 
 	public static void CarregaVetor(ServerSocket ss) throws IOException { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO VETOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-		int[] vetor = new int[250000];
-		BufferedReader entrada;
-		DataOutputStream saida;
-		String dadoCliente = null;
+		int[] vetor = RecebeVetor(ss);
 
-		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ carregando o vetor com os dados recebidos da conexão. 
-			s = ss.accept();
-			entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			dadoCliente = entrada.readLine();
-			vetor[auxiliar] = Integer.parseInt(dadoCliente);
-			System.out.println("\nValor: "+ vetor[auxiliar]);
-			saida = new DataOutputStream(s.getOutputStream());
-			saida.writeBytes("recebido!");
-			saida.flush();
-			entrada.close();
-			saida.close();
-		}
-
-		String auxiliar = Main.DadoCliente();
+		String auxiliar = EscolheOrdenacao(ss);
 
 		if(auxiliar.contains("InsertionSort")) {
 
@@ -51,13 +33,32 @@ public class Vetor {
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
-			System.in.read();
 		}
+		
+		EnviaVetorOrdenado(ss, vetor);
 
-		for(int i = 0; i<vetor.length; i++) {
-			System.out.println("Valor: "+ vetor[i]);
+	}
+	
+	private static int[] RecebeVetor(ServerSocket ss) throws IOException {
+		int[] vetor = new int[250000];
+		BufferedReader entrada;
+		DataOutputStream saida;
+		String dadoCliente = null;
+
+		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ carregando o vetor com os dados recebidos da conexão. 
+			s = ss.accept();
+			entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			dadoCliente = entrada.readLine();
+			vetor[auxiliar] = Integer.parseInt(dadoCliente);
+			System.out.println("\nValor: "+ vetor[auxiliar]);
+			saida = new DataOutputStream(s.getOutputStream());
+			saida.writeBytes("recebido!");
+			saida.flush();
+			entrada.close();
+			saida.close();
 		}
-
+		return vetor;
+		
 	}
 
 	public static void insertionSortVetor(int[] vetor) {
@@ -103,6 +104,37 @@ public class Vetor {
 		vetor[inicio] = vetor[f];
 		vetor[f] = pivo;
 		return f;
+	}
+	
+	private static String EscolheOrdenacao(ServerSocket ss) throws IOException {
+		BufferedReader entrada;
+		DataOutputStream saida;
+		String dadoCliente = null;
+		
+		s = ss.accept();
+		
+		entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));  // lendo a escolha do cliente de qual tipo de armazenamento..
+		dadoCliente = entrada.readLine();										 // ...será feito, vetor, encadeada ou Array.
+		
+		saida = new DataOutputStream(s.getOutputStream());
+		saida.flush();
+		entrada.close();
+		saida.close();
+		
+		return dadoCliente;
+	}
+	
+	private static void EnviaVetorOrdenado(ServerSocket ss,int[] vetor) throws IOException {
+		DataOutputStream saida;
+
+		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ Enviando o vetor com os dados recebidos da ordenacao. 
+			s = ss.accept();
+			saida = new DataOutputStream(s.getOutputStream());
+			saida.writeBytes(String.valueOf(vetor[auxiliar]));
+			System.out.println("\n" + auxiliar + ") Enviado: " + vetor[auxiliar]);
+			saida.flush();
+			saida.close();
+		}
 	}
 
 }

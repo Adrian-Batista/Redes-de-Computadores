@@ -20,6 +20,7 @@ public class Main {
 		int cont = 0;
 		int auxiliar = 0;
 		String valor = null;
+		int[] vetor = new int[250000];
 		
 		Random gerador = new Random();
 
@@ -36,7 +37,7 @@ public class Main {
 			System.out.println("| ( 1 ) - ENVIAR VIA VETOR              | \n|\t\t\t\t\t|");
 			System.out.println("| ( 2 ) - ENVIAR VIA LISTA ENCADEADA    | \n|\t\t\t\t\t|");
 			System.out.println("| ( 3 ) - ENVIA VIA ARRAY LIST          | \n|\t\t\t\t\t| ");
-			System.out.println("| ( 4 ) - LISTAR ENVIO                  | \n|\t\t\t\t\t| ");
+			System.out.println("| ( 4 ) - LISTAR DADOS ORDENADOS        | \n|\t\t\t\t\t| ");
 			System.out.println("| ( 0 ) - SAIR                          | \n|\t\t\t\t\t|");
 			System.out.println("=========================================\n");
 			System.out.println(" Escolha uma das opções: ");
@@ -49,7 +50,7 @@ public class Main {
 				case 1: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO VETOR ~~~~~~~~~~~~~~~~~~~~~~~~
 					
 					
-					int[] vetor = new int[250000];
+					
 					double processamento = 0;
 					
 					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
@@ -68,8 +69,35 @@ public class Main {
 						DecimalFormat formato = new DecimalFormat("#.00");
 						System.out.println("\nEnviados: " + formato.format(processamento) + "%");
 					}
-					System.out.println("Todos os dados foram enviados ao Servidor!");
-					System.in.read();
+					
+					auxiliar = 0;
+					
+					
+					System.out.println("Todos os dados foram enviados ao Servidor!\n Escolha uma das opções para ser executada:");
+					System.out.println("\n========================================= \n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - Ordenar via Insertion Sort    | \n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - Ordenar via Quick Sort        | \n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - Não ordenar                   | \n|\t\t\t\t\t| ");
+					System.out.println("=========================================\n");
+					System.out.println(" Escolha uma das opções: ");
+					auxiliar = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+					
+					
+					
+					if(auxiliar == 1) {
+						Conexao.EnviandoDados("InsertionSort");
+					}
+					if(auxiliar == 2) {
+						Conexao.EnviandoDados("QuickSort");
+					}
+					
+					System.out.println("Aguarde a ordenação!\n");
+					
+					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+						vetor[auxiliar]=Integer.parseInt(Conexao.RecebendoDados());
+					}
 					
 					break;
 			
@@ -101,7 +129,11 @@ public class Main {
 					break;
 
 				case 4:
-				
+					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+						System.out.println(auxiliar + ") Valor: " + vetor[auxiliar]);
+					}
+					System.out.println("\nDados Listados com sucesso!");
+					System.in.read();
 					break;
 					
 				case 5:
