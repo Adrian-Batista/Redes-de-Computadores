@@ -17,47 +17,36 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		ss = new ServerSocket(2800);
 		while (true) {
-			BufferedReader entrada;
-			DataOutputStream saida;
-			String dadoCliente = null;
+			String auxiliar = DadoCliente();
 			
-			s = ss.accept();
-			
-			entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));  // lendo a escolha do cliente de qual tipo de armazenamento..
-			dadoCliente = entrada.readLine();										 // ...será feito, vetor, encadeada ou Array.
-			
-			saida = new DataOutputStream(s.getOutputStream());
-			saida.writeBytes("Os dados serão armazenados em " + dadoCliente);
-			saida.flush();
-			entrada.close();
-			saida.close();
-			
-			if(dadoCliente.contains("vetor")) {
-				Vetor.OrdenaVetor(ss);
+			if(auxiliar.contains("vetor")) {
+				Vetor.CarregaVetor(ss);
 			}
-			if(dadoCliente=="encadeada") {
+			if(auxiliar=="encadeada") {
 				
 			}
-			if(dadoCliente=="array") {
+			if(auxiliar=="array") {
 				
-			}
-			
-			
-			
+			}	
 		}
-	
 	}
 	
-	
-	
-	public static void OrdenaEncadeada() { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO ENCADEADA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public static String DadoCliente() throws IOException {
+		BufferedReader entrada;
+		DataOutputStream saida;
+		String dadoCliente = null;
 		
+		s = ss.accept();
+		
+		entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));  // lendo a escolha do cliente de qual tipo de armazenamento..
+		dadoCliente = entrada.readLine();										 // ...será feito, vetor, encadeada ou Array.
+		
+		saida = new DataOutputStream(s.getOutputStream());
+		saida.flush();
+		entrada.close();
+		saida.close();
+		
+		return dadoCliente;
 	}
-
-	public static void OrdenaArray() { // ~~~~~~~~~~~~~~~~~~~~~~ MÉTODO ARRAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
-	}
-	
-	
-
 }
