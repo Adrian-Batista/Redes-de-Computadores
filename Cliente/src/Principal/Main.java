@@ -78,16 +78,13 @@ public class Main {
 					System.out.println("\n========================================= \n|\t\t\t\t\t|");
 					System.out.println("| ( 1 ) - Ordenar via Insertion Sort    | \n|\t\t\t\t\t|");
 					System.out.println("| ( 2 ) - Ordenar via Quick Sort        | \n|\t\t\t\t\t|");
-					System.out.println("| ( 3 ) - Não ordenar                   | \n|\t\t\t\t\t| ");
 					System.out.println("=========================================\n");
 					System.out.println(" Escolha uma das opções: ");
 					auxiliar = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
-					if(auxiliar == 3) {
-						break;
-					}
-				}while(auxiliar != 1 || auxiliar != 2);
+					
+				}while(auxiliar != 1 && auxiliar != 2);
 
 
 				if(auxiliar == 1) {
