@@ -28,7 +28,7 @@ public class Vetor {
 
 		if(auxiliar.contains("QuickSort")) {
 			long tempoInicial = System.currentTimeMillis();
-			quickSortVetor(vetor, 0, vetor.length);
+			quickSortVetor(vetor, 0, vetor.length-1);
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
