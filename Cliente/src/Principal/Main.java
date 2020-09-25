@@ -93,7 +93,7 @@ public class Main {
 						Conexao.EnviandoDados("QuickSort");
 					}
 					
-					System.out.println("Aguarde a ordenação!\n");
+					System.out.println("Aguarde a ordenação, pode levar alguns minutos!\n");
 					
 					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
 						vetor[auxiliar]=Integer.parseInt(Conexao.RecebendoDados());

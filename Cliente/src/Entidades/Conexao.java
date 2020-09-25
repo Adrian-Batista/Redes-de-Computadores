@@ -28,7 +28,7 @@ public class Conexao {
 		wr.write("\n");
 		wr.flush();
 
-		rd = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
+		rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		String requestString = rd.readLine();
 		System.out.println("Dado: " + requestString);
 	
