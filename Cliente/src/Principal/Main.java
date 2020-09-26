@@ -126,6 +126,48 @@ public class Main {
 				}
 				System.out.println("ArrayList preenchida Pressione Enter!");
 				System.in.read();
+				
+				Conexao.EnviandoDados("array");
+				
+				processamento = 0;
+				
+				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+					valor = String.valueOf(arrayList.get(auxiliar));
+					Conexao.EnviandoDados(valor);
+					processamento = processamento + 0.0004;
+					DecimalFormat formato = new DecimalFormat("#.00");
+					System.out.println("\nEnviados: " + formato.format(processamento) + "%");
+				}
+
+				auxiliar = 0;
+
+				do {
+					Main.LimparTela();
+					System.out.println("Todos os dados foram enviados ao Servidor!\n Escolha uma das opções para ser executada:");
+					System.out.println("\n========================================= \n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - Ordenar via Insertion Sort    | \n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - Ordenar via Quick Sort        | \n|\t\t\t\t\t|");
+					System.out.println("=========================================\n");
+					System.out.println(" Escolha uma das opções: ");
+					auxiliar = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+					
+				}while(auxiliar != 1 && auxiliar != 2);
+
+
+				if(auxiliar == 1) {
+					Conexao.EnviandoDados("InsertionSort");
+				}
+				if(auxiliar == 2) {
+					Conexao.EnviandoDados("QuickSort");
+				}
+
+				System.out.println("Aguarde a ordenação, pode levar alguns minutos!\n");
+
+				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+					arrayList.add(auxiliar, Integer.parseInt(Conexao.RecebendoDados()));
+				}
 
 				break;
 
@@ -139,9 +181,12 @@ public class Main {
 
 			case 5:
 
-				int aux = 10;
-				valor = String.valueOf(aux);
-				Conexao.EnviandoDados(valor);
+				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+					System.out.println(auxiliar + ") Valor: " + arrayList.get(auxiliar));
+				}
+				System.out.println("\nDados Listados com sucesso!");
+				System.in.read();
+					
 				break;
 
 			case 0:

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Entidades.Array;
 import Entidades.Vetor;
 
 public class Main {
@@ -22,11 +23,11 @@ public class Main {
 			if(auxiliar.contains("vetor")) {
 				Vetor.CarregaVetor(ss);
 			}
-			if(auxiliar=="encadeada") {
+			if(auxiliar.contains("encadeada")) {
 
 			}
-			if(auxiliar=="array") {
-
+			if(auxiliar.contains("array")) {
+				Array.CarregaArray(ss);
 			}	
 		}
 	}
