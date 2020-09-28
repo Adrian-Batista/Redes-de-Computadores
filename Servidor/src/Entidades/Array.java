@@ -31,7 +31,7 @@ public class Array {
 
 		if(auxiliar.contains("QuickSort")) {
 			long tempoInicial = System.currentTimeMillis();
-			quickSortArray(lista, 0, 0);
+			lista = quickSortArray(lista);
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
@@ -78,7 +78,7 @@ public class Array {
 	    }
 	}
 	
-	private static List<Integer> quickSortArray(List<Integer> list, int a, int b)
+	/*private static List<Integer> quickSortArray(List<Integer> list, int a, int b)
 	{
 	    if (a >= b) 
 	        return list;
@@ -108,6 +108,34 @@ public class Array {
 	    
 	    
 	    return list;
+	}*/
+	
+	private static List<Integer> quickSortArray(List<Integer> list)
+	{
+	    if (list.size() <= 1) 
+	        return list; // Already sorted  
+
+	    List<Integer> sorted = new ArrayList<Integer>();
+	    List<Integer> lesser = new ArrayList<Integer>();
+	    List<Integer> greater = new ArrayList<Integer>();
+	    Integer pivot = list.get(list.size()-1); // Use last Vehicle as pivot
+	    for (int i = 0; i < list.size()-1; i++)
+	    {
+	        //int order = list.get(i).compareTo(pivot);
+	        if (list.get(i).compareTo(pivot) < 0)
+	            lesser.add(list.get(i));    
+	        else
+	            greater.add(list.get(i));   
+	    }
+
+	    lesser = quickSortArray(lesser);
+	    greater = quickSortArray(greater);
+
+	    lesser.add(pivot);
+	    lesser.addAll(greater);
+	    sorted = lesser;
+
+	    return sorted;
 	}
 
 	private static String EscolheOrdenacao(ServerSocket ss) throws IOException {
