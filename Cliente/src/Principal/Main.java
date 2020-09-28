@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import Entidades.Conexao;
 import Entidades.Encadeada;
+import Entidades.Encadeada.Elemento;
 
 public class Main {
 
@@ -21,6 +22,7 @@ public class Main {
 		int auxiliar = 0;
 		String valor = null;
 		int[] vetor = new int[250000];
+		Elemento encadeada = new Elemento(0);
 
 		Random gerador = new Random();
 
@@ -104,17 +106,55 @@ public class Main {
 
 			case 2: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO LISTA ENCADEADA ~~~~~~~~~~~~~~~~~~~~~~~~
 
-				Encadeada.listarElementos(Encadeada.inserirElementoFim());
+				Encadeada.listarElementos(Encadeada.getInicio());
 				System.out.println("Lista Encadeada preenchida Pressione Enter!");
 				System.in.read();
+				
+				Conexao.EnviandoDados("encadeada");
+				
+				processamento = 0;
+				Elemento aux = Encadeada.getInicio();
+				
+				while(aux!=null){
+					System.out.println("Valor : " + aux.valor);
+					valor = String.valueOf(aux.valor);
+					Conexao.EnviandoDados(valor);
+					processamento = processamento + 0.0004;
+					DecimalFormat formato = new DecimalFormat("#.00");
+					System.out.println("\nEnviados: " + formato.format(processamento) + "%");
+					aux = aux.prox;
+				}
+				
+				auxiliar = 0;
 
-				Encadeada.EnviaEncadeada();
-				System.out.println("Dados enviados com sucesso!");
-				System.in.read();
+				do {
+					Main.LimparTela();
+					System.out.println("Todos os dados foram enviados ao Servidor!\n Escolha uma das opções para ser executada:");
+					System.out.println("\n========================================= \n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - Ordenar via Insertion Sort    | \n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - Ordenar via Quick Sort        | \n|\t\t\t\t\t|");
+					System.out.println("=========================================\n");
+					System.out.println(" Escolha uma das opções: ");
+					auxiliar = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+
+				}while(auxiliar != 1 && auxiliar != 2);
 
 
+				if(auxiliar == 1) {
+					Conexao.EnviandoDados("InsertionSort");
+				}
+				if(auxiliar == 2) {
+					Conexao.EnviandoDados("QuickSort");
+				}
 
-
+				System.out.println("Aguarde a ordenação, pode levar alguns minutos!\n");
+				aux = Encadeada.getInicio();
+				while(aux!=null){
+					aux.valor = Integer.parseInt(Conexao.RecebendoDados());
+					aux = aux.prox;
+				}
 
 				break;
 
@@ -172,21 +212,45 @@ public class Main {
 				break;
 
 			case 4:
-				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
-					System.out.println(auxiliar + ") Valor: " + vetor[auxiliar]);
+				auxiliar = 0;
+
+				do {
+					Main.LimparTela();
+					System.out.println("\n - Escolha uma das opções para ser executada:");
+					System.out.println("\n========================================= \n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - Listar VETOR ordenado        | \n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - Listar ENCADEADA ordenada    | \n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - Listar ARRAY ordenado        | \n|\t\t\t\t\t|");
+					System.out.println("=========================================\n");
+					System.out.println(" Escolha uma das opções: ");
+					auxiliar = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+
+				}while(auxiliar != 1 && auxiliar != 2 && auxiliar != 3);
+				
+				if(auxiliar == 1) {
+					for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+						System.out.println(auxiliar + ") Valor: " + vetor[auxiliar]);
+					}
 				}
+				if(auxiliar == 2) {
+					
+				}
+				if(auxiliar == 3) {
+					if(arrayList.size()!=0) {
+						for(auxiliar = 0; auxiliar<250000; auxiliar++) {
+							System.out.println(auxiliar + ") Valor: " + arrayList.get(auxiliar));
+						}
+					}else {
+						System.out.println("A lista não foi ordenada!");
+						System.in.read();
+						break;
+					}
+				}
+				
 				System.out.println("\nDados Listados com sucesso!");
 				System.in.read();
-				break;
-
-			case 5:
-
-				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
-					System.out.println(auxiliar + ") Valor: " + arrayList.get(auxiliar));
-				}
-				System.out.println("\nDados Listados com sucesso!");
-				System.in.read();
-
 				break;
 
 			case 0:

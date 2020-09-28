@@ -9,8 +9,8 @@ public class Encadeada {
 
 	public static class Elemento{
 
-		int valor;
-		Elemento prox;
+		public int valor;
+		public Elemento prox;
 
 		public Elemento(int valor){
 			this.valor = valor;
@@ -31,11 +31,11 @@ public class Encadeada {
 		fim = null;
 		tamanho = 0;
 	}
-
+	
 	public int getTamanho(){
 		return tamanho;
 	}
-
+	
 	public static void listarElementos(Elemento inicio){
 		Elemento aux = inicio;
 		while(aux!=null){
