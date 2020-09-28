@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Array {
@@ -30,7 +31,7 @@ public class Array {
 
 		if(auxiliar.contains("QuickSort")) {
 			long tempoInicial = System.currentTimeMillis();
-			//quickSortVetor(lista, 0, lista.size()-1);
+			quickSortArray(lista, 0, 0);
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
@@ -61,55 +62,52 @@ public class Array {
 
 	}
 
-	private static void insertionSortArray(List<Integer> lista) {
-		int key = 0; //value to compare
-		int j = 0; //index of other value
-		
-		//loop through list
-		int aux = 0;
-		for(int i = 0; i < lista.size(); i++){
-			key = lista.get(i); //get value at index
-			j = i - 1; //get index to previous value
-			//compare value at the jth index to key
-			while(j >= 0 && lista.get(j) > key){
-				lista.set(j+1, lista.get(j));
-				j--; //move to previous index
-				System.out.println("\nDados ordenados: " + aux++);
-			}
-			lista.set(j+1, key); //set with new value
-			
-		}
+	public static void insertionSortArray(List<Integer> Array) {
+
+	    int i, j;
+	    int key = 0;
+
+	    for (i = 1; i < Array.size(); i++) {
+	        key = Array.get(i);
+	        j = i;
+	        while((j > 0) && (Array.get(j - 1) > key)) {
+	            Array.set(j,Array.get(j - 1));
+	            j--;
+	        }
+	        Array.set(j,key);
+	    }
 	}
 	
-	
+	private static List<Integer> quickSortArray(List<Integer> list, int a, int b)
+	{
+	    if (a >= b) 
+	        return list;
 
-	private static void quickSortVetor(int[] vetor, int inicio, int fim) {
-		if (inicio < fim) {
-			int posicaoPivo = separarArray(vetor, inicio, fim);
-			quickSortVetor(vetor, inicio, posicaoPivo - 1);
-			quickSortVetor(vetor, posicaoPivo + 1, fim);
-		}
-	}
+	    int pivot = list.get(b);
 
-	private static int separarArray(int[] vetor, int inicio, int fim) {
-		int pivo = vetor[inicio];
-		int i = inicio + 1, f = fim;
-		while (i <= f) {
-			if (vetor[i] <= pivo)
-				i++;
-			else if (pivo < vetor[f])
-				f--;
-			else {
-				int troca = vetor[i];
-				vetor[i] = vetor[f];
-				vetor[f] = troca;
-				i++;
-				f--;
-			}
-		}
-		vetor[inicio] = vetor[f];
-		vetor[f] = pivo;
-		return f;
+	    int left = a;
+	    int right = b;
+
+	    while (left < right)
+	    {
+	        while(list.get(left).compareTo(pivot) < 0)
+	            left++;
+
+	        while(list.get(right).compareTo(pivot) > 0)
+	            right--;
+
+	        if (right > left);
+	        {
+	            Collections.swap(list, left, right);
+	        }
+	    }
+
+	    quickSortArray(list, a, right-1);
+	    quickSortArray(list, right+1, b);
+	    
+	    
+	    
+	    return list;
 	}
 
 	private static String EscolheOrdenacao(ServerSocket ss) throws IOException {
