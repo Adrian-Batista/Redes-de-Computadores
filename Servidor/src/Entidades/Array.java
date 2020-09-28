@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Array {
@@ -64,20 +63,20 @@ public class Array {
 
 	public static void insertionSortArray(List<Integer> Array) {
 
-	    int i, j;
-	    int key = 0;
+		int i, j;
+		int key = 0;
 
-	    for (i = 1; i < Array.size(); i++) {
-	        key = Array.get(i);
-	        j = i;
-	        while((j > 0) && (Array.get(j - 1) > key)) {
-	            Array.set(j,Array.get(j - 1));
-	            j--;
-	        }
-	        Array.set(j,key);
-	    }
+		for (i = 1; i < Array.size(); i++) {
+			key = Array.get(i);
+			j = i;
+			while((j > 0) && (Array.get(j - 1) > key)) {
+				Array.set(j,Array.get(j - 1));
+				j--;
+			}
+			Array.set(j,key);
+		}
 	}
-	
+
 	/*private static List<Integer> quickSortArray(List<Integer> list, int a, int b)
 	{
 	    if (a >= b) 
@@ -104,38 +103,38 @@ public class Array {
 
 	    quickSortArray(list, a, right-1);
 	    quickSortArray(list, right+1, b);
-	    
-	    
-	    
+
+
+
 	    return list;
 	}*/
-	
+
 	private static List<Integer> quickSortArray(List<Integer> list)
 	{
-	    if (list.size() <= 1) 
-	        return list; // Already sorted  
+		if (list.size() <= 1) 
+			return list; // Already sorted  
 
-	    List<Integer> sorted = new ArrayList<Integer>();
-	    List<Integer> lesser = new ArrayList<Integer>();
-	    List<Integer> greater = new ArrayList<Integer>();
-	    Integer pivot = list.get(list.size()-1); // Use last Vehicle as pivot
-	    for (int i = 0; i < list.size()-1; i++)
-	    {
-	        //int order = list.get(i).compareTo(pivot);
-	        if (list.get(i).compareTo(pivot) < 0)
-	            lesser.add(list.get(i));    
-	        else
-	            greater.add(list.get(i));   
-	    }
+		List<Integer> sorted = new ArrayList<Integer>();
+		List<Integer> lesser = new ArrayList<Integer>();
+		List<Integer> greater = new ArrayList<Integer>();
+		Integer pivot = list.get(list.size()-1); // Use last Vehicle as pivot
+		for (int i = 0; i < list.size()-1; i++)
+		{
+			//int order = list.get(i).compareTo(pivot);
+			if (list.get(i).compareTo(pivot) < 0)
+				lesser.add(list.get(i));    
+			else
+				greater.add(list.get(i));   
+		}
 
-	    lesser = quickSortArray(lesser);
-	    greater = quickSortArray(greater);
+		lesser = quickSortArray(lesser);
+		greater = quickSortArray(greater);
 
-	    lesser.add(pivot);
-	    lesser.addAll(greater);
-	    sorted = lesser;
+		lesser.add(pivot);
+		lesser.addAll(greater);
+		sorted = lesser;
 
-	    return sorted;
+		return sorted;
 	}
 
 	private static String EscolheOrdenacao(ServerSocket ss) throws IOException {

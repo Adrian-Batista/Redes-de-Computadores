@@ -83,7 +83,7 @@ public class Main {
 					auxiliar = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
-					
+
 				}while(auxiliar != 1 && auxiliar != 2);
 
 
@@ -126,11 +126,11 @@ public class Main {
 				}
 				System.out.println("ArrayList preenchida Pressione Enter!");
 				System.in.read();
-				
+
 				Conexao.EnviandoDados("array");
-				
+
 				processamento = 0;
-				
+
 				for(auxiliar = 0; auxiliar<250000; auxiliar++) {
 					valor = String.valueOf(arrayList.get(auxiliar));
 					Conexao.EnviandoDados(valor);
@@ -152,7 +152,7 @@ public class Main {
 					auxiliar = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
-					
+
 				}while(auxiliar != 1 && auxiliar != 2);
 
 
@@ -186,7 +186,7 @@ public class Main {
 				}
 				System.out.println("\nDados Listados com sucesso!");
 				System.in.read();
-					
+
 				break;
 
 			case 0:
