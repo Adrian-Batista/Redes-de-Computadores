@@ -125,7 +125,7 @@ public class Main {
 					aux = aux.prox;
 				}
 				
-				auxiliar = 0;
+				/*auxiliar = 0;
 
 				do {
 					Main.LimparTela();
@@ -147,14 +147,14 @@ public class Main {
 				}
 				if(auxiliar == 2) {
 					Conexao.EnviandoDados("QuickSort");
-				}
+				}*/
 
 				System.out.println("Aguarde a ordenação, pode levar alguns minutos!\n");
-				aux = Encadeada.getInicio();
-				while(aux!=null){
-					aux.valor = Integer.parseInt(Conexao.RecebendoDados());
-					aux = aux.prox;
-				}
+				
+				aux = Encadeada.RecebeEncadeada();
+				
+				System.out.println("Dados recebidos com Sucesso!");
+				System.in.read();
 				
 				
 

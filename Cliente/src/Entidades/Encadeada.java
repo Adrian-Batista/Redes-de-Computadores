@@ -5,6 +5,8 @@ import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+import Entidades.Encadeada.Elemento;
+
 public class Encadeada {
 
 	public static class Elemento{
@@ -72,7 +74,7 @@ public class Encadeada {
 		String auxiliar = null;
 		double processamento = 0;
 		while(aux!=null){
-			auxiliar = String.valueOf(aux);
+			auxiliar = String.valueOf(aux.valor);
 			Conexao.EnviandoDados(auxiliar);
 			processamento = processamento + 0.0004;
 			DecimalFormat formato = new DecimalFormat("#.00");
@@ -81,6 +83,26 @@ public class Encadeada {
 		}
 		
 	}
+	
+	public static Elemento RecebeEncadeada() throws UnknownHostException, IOException {
+		Elemento inicio = null;
+		Elemento fim = null;
+		int tamanho =0;
+		for(int auxiliar = 0; auxiliar<250000; auxiliar++) {
+			Elemento novo = new Elemento(Integer.parseInt(Conexao.RecebendoDados()));
+			if (tamanho == 0){
+				inicio = novo;
+				fim = novo;
+			}else{
+				fim.prox = novo;
+				fim = novo;
+			}
+			tamanho++;
+		}
+		return inicio;
+	}
+	
+	
 	
 
 	public static Elemento getInicio() {
