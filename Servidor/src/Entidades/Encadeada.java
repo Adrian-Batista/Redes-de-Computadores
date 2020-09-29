@@ -85,13 +85,15 @@ public class Encadeada {
 				fim = novo;
 			}
 			tamanho++;
-			}
+			
 			System.out.println("\nValor: "+ dadoCliente);
 			saida = new DataOutputStream(s.getOutputStream());
 			saida.writeBytes("recebido!");
 			saida.flush();
 			entrada.close();
 			saida.close();
+			}
+			
 			
 			
 		return inicio;		
@@ -163,7 +165,7 @@ public class Encadeada {
 	private static void EnviaEncadeadaOrdenada(ServerSocket ss,Elemento inicio) throws IOException {
 		DataOutputStream saida;
 
-		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ Enviando o vetor com os dados recebidos da ordenacao. 
+		for(int auxiliar = 0; auxiliar<250000; auxiliar++) { // ~~~~~~~~~~~~ Enviando a lista encadeada com os dados recebidos da ordenacao. 
 			s = ss.accept();
 			Elemento aux = inicio;
 			while(aux!=null){

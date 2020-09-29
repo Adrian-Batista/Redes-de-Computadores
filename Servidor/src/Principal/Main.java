@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Entidades.Array;
+import Entidades.Encadeada;
 import Entidades.Vetor;
 
 public class Main {
@@ -24,6 +25,7 @@ public class Main {
 				Vetor.CarregaVetor(ss);
 			}
 			if(auxiliar.contains("encadeada")) {
+				Encadeada.CarregaEncadeada(ss);
 
 			}
 			if(auxiliar.contains("array")) {

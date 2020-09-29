@@ -36,12 +36,13 @@ public class Encadeada {
 		return tamanho;
 	}
 	
-	public static void listarElementos(Elemento inicio){
+	public static Elemento listarElementos(Elemento inicio){
 		Elemento aux = inicio;
 		while(aux!=null){
 			System.out.println("Valor : " + aux.valor);
 			aux = aux.prox;
 		}
+		return inicio;
 	}
 
 	public static Elemento inserirElementoFim(){

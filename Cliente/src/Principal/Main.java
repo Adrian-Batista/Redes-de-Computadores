@@ -14,6 +14,7 @@ import Entidades.Encadeada.Elemento;
 public class Main {
 
 	public static List<Integer> arrayList = new ArrayList<Integer>();
+	public static Elemento aux;
 
 	public static void main(String[] args) throws IOException {
 
@@ -22,7 +23,6 @@ public class Main {
 		int auxiliar = 0;
 		String valor = null;
 		int[] vetor = new int[250000];
-		Elemento encadeada = new Elemento(0);
 
 		Random gerador = new Random();
 
@@ -106,14 +106,14 @@ public class Main {
 
 			case 2: // ~~~~~~~~~~~~~~~~~~~~~~ CARREGANDO LISTA ENCADEADA ~~~~~~~~~~~~~~~~~~~~~~~~
 
-				Encadeada.listarElementos(Encadeada.getInicio());
+				aux = Encadeada.listarElementos(Encadeada.inserirElementoFim());
 				System.out.println("Lista Encadeada preenchida Pressione Enter!");
 				System.in.read();
 				
 				Conexao.EnviandoDados("encadeada");
 				
 				processamento = 0;
-				Elemento aux = Encadeada.getInicio();
+				
 				
 				while(aux!=null){
 					System.out.println("Valor : " + aux.valor);
@@ -139,7 +139,7 @@ public class Main {
 					entrada.nextLine();
 					System.out.print("\n");
 
-				}while(auxiliar != 1 && auxiliar != 2);
+				}while(auxiliar != 1 && auxiliar != 2 && auxiliar != 0);
 
 
 				if(auxiliar == 1) {
@@ -155,6 +155,8 @@ public class Main {
 					aux.valor = Integer.parseInt(Conexao.RecebendoDados());
 					aux = aux.prox;
 				}
+				
+				
 
 				break;
 
@@ -235,7 +237,10 @@ public class Main {
 					}
 				}
 				if(auxiliar == 2) {
-					
+					while(aux!=null){
+						System.out.println("Valor: " + aux.valor);
+						aux = aux.prox;
+					}
 				}
 				if(auxiliar == 3) {
 					if(arrayList.size()!=0) {
