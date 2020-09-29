@@ -237,8 +237,9 @@ public class Main {
 					}
 				}
 				if(auxiliar == 2) {
+					int contador = 0;
 					while(aux!=null){
-						System.out.println("Valor: " + aux.valor);
+						System.out.println(contador ++ +") Valor: " + aux.valor);
 						aux = aux.prox;
 					}
 				}
