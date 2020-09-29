@@ -101,7 +101,7 @@ public class Encadeada {
 		return inicio;		
 	}
 
-	
+
 
 	private static void quickSortVetor(int[] vetor, int inicio, int fim) {
 		if (inicio < fim) {
@@ -152,17 +152,17 @@ public class Encadeada {
 
 	private static void EnviaEncadeadaOrdenada(ServerSocket ss,Elemento inicio) throws IOException {
 		DataOutputStream saida;
-			int cont = 0;
-			Elemento aux = inicio;
-			while(aux!=null){
-				s = ss.accept();
-				saida = new DataOutputStream(s.getOutputStream());
-				saida.writeBytes(String.valueOf(aux.valor));
-				System.out.println("\n" + cont++ + ") Enviado: " + aux.valor);
-				saida.flush();
-				saida.close();
-				aux = aux.prox;
-			
+		int cont = 0;
+		Elemento aux = inicio;
+		while(aux!=null){
+			s = ss.accept();
+			saida = new DataOutputStream(s.getOutputStream());
+			saida.writeBytes(String.valueOf(aux.valor));
+			System.out.println("\n" + cont++ + ") Enviado: " + aux.valor);
+			saida.flush();
+			saida.close();
+			aux = aux.prox;
+
 
 		}
 	}
