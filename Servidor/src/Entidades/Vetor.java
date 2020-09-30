@@ -24,6 +24,7 @@ public class Vetor {
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.in.read();
 		}
 
 		if(auxiliar.contains("QuickSort")) {
@@ -32,6 +33,7 @@ public class Vetor {
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.in.read();
 		}
 		
 		EnviaVetorOrdenado(ss, vetor);

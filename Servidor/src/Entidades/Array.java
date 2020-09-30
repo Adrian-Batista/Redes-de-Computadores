@@ -24,8 +24,10 @@ public class Array {
 			long tempoInicial = System.currentTimeMillis();
 			insertionSortArray(lista);
 			long tempoFinal = System.currentTimeMillis();
+			
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.in.read();
 		}
 
 		if(auxiliar.contains("QuickSort")) {
@@ -34,6 +36,7 @@ public class Array {
 			long tempoFinal = System.currentTimeMillis();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.in.read();
 		}
 
 		EnviaArrayOrdenado(ss, lista);
@@ -77,50 +80,19 @@ public class Array {
 		}
 	}
 
-	/*private static List<Integer> quickSortArray(List<Integer> list, int a, int b)
-	{
-	    if (a >= b) 
-	        return list;
-
-	    int pivot = list.get(b);
-
-	    int left = a;
-	    int right = b;
-
-	    while (left < right)
-	    {
-	        while(list.get(left).compareTo(pivot) < 0)
-	            left++;
-
-	        while(list.get(right).compareTo(pivot) > 0)
-	            right--;
-
-	        if (right > left);
-	        {
-	            Collections.swap(list, left, right);
-	        }
-	    }
-
-	    quickSortArray(list, a, right-1);
-	    quickSortArray(list, right+1, b);
-
-
-
-	    return list;
-	}*/
 
 	private static List<Integer> quickSortArray(List<Integer> list)
 	{
 		if (list.size() <= 1) 
-			return list; // Already sorted  
+			return list;  
 
 		List<Integer> sorted = new ArrayList<Integer>();
 		List<Integer> lesser = new ArrayList<Integer>();
 		List<Integer> greater = new ArrayList<Integer>();
-		Integer pivot = list.get(list.size()-1); // Use last Vehicle as pivot
+		Integer pivot = list.get(list.size()-1);
 		for (int i = 0; i < list.size()-1; i++)
 		{
-			//int order = list.get(i).compareTo(pivot);
+			
 			if (list.get(i).compareTo(pivot) < 0)
 				lesser.add(list.get(i));    
 			else
