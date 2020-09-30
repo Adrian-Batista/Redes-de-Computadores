@@ -21,21 +21,27 @@ public class Array {
 
 		if(auxiliar.contains("InsertionSort")) {
 
+			Runtime rt = Runtime.getRuntime();
 			long tempoInicial = System.currentTimeMillis();
 			insertionSortArray(lista);
 			long tempoFinal = System.currentTimeMillis();
-			
+			long memoria = (Runtime.getRuntime().freeMemory() - rt.freeMemory());
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.out.println("Memória utilizada = " + memoria);
 			System.in.read();
 		}
 
 		if(auxiliar.contains("QuickSort")) {
+			
+			Runtime rt = Runtime.getRuntime();
 			long tempoInicial = System.currentTimeMillis();
 			lista = quickSortArray(lista);
 			long tempoFinal = System.currentTimeMillis();
+			long memoria = (Runtime.getRuntime().freeMemory() - rt.freeMemory());
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.out.println("Memória utilizada = " + memoria);
 			System.in.read();
 		}
 
