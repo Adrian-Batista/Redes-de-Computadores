@@ -18,21 +18,35 @@ public class Vetor {
 		String auxiliar = EscolheOrdenacao(ss);
 
 		if(auxiliar.contains("InsertionSort")) {
-
+			
+			Runtime rt = Runtime.getRuntime();
+			long memoriaInicial = rt.maxMemory() - rt.totalMemory();
 			long tempoInicial = System.currentTimeMillis();
 			insertionSortVetor(vetor);
 			long tempoFinal = System.currentTimeMillis();
+			long memoriaFinal = rt.maxMemory() - rt.freeMemory();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.out.println("Inicial: " + memoriaInicial);
+			System.out.println("Final: " + memoriaFinal);
+			System.out.println("Memória utilizada = " + (memoriaFinal - memoriaInicial));
 			System.in.read();
+			
 		}
 
 		if(auxiliar.contains("QuickSort")) {
+			
+			Runtime rt = Runtime.getRuntime();
+			long memoriaInicial = rt.maxMemory() - rt.totalMemory();
 			long tempoInicial = System.currentTimeMillis();
 			quickSortVetor(vetor, 0, vetor.length-1);
 			long tempoFinal = System.currentTimeMillis();
+			long memoriaFinal = rt.maxMemory() - rt.freeMemory();
 
 			System.out.println("Executado em = " + (tempoFinal - tempoInicial) + " ms");
+			System.out.println("Inicial: " + memoriaInicial);
+			System.out.println("Final: " + memoriaFinal);
+			System.out.println("Memória utilizada = " + (memoriaFinal - memoriaInicial));
 			System.in.read();
 		}
 		
